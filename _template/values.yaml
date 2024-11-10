@@ -1,0 +1,176 @@
+---
+# ---- | ConfigMap component
+configmap:
+  # --- Additional annotations to apply to the ConfigMap
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Binary data to be added inside the ConfigMap
+  binaryData: {}
+  #  sample.txt.gz: 'H4sIAAAAAAAA/8vJyCxWAKJEiQoAAAA='
+  # --- Data to be added inside the ConfigMap
+  data: {}
+  #  sample.txt: "Hello, World!"
+  # --- Prevent update after creation
+  immutable: false
+  # --- Additional labels to apply to the ConfigMap
+  labels: {}
+  #  labelKey: "labelValue"
+
+# ---- | Deployment component
+deployment:
+  # --- Additional annotations to apply to the ConfigMap
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Containers to run
+  containers: []
+  # -
+  #   --- Container name
+  #   name: ""
+  #   --- Container image
+  #   image:
+  #     repository: ""
+  #     tag: ""
+  #   --- Image pull policy
+  #   pullPolicy: IfNotPresent
+  #   --- Container ports
+  #   ports: []
+  #   #  - name: ""
+  #   #    containerPort: 80
+  #   #    protocol: TCP
+  #   --- Environment variables
+  #   env: []
+  #   #  - name: FOO
+  #   #    value: bar
+  #   #    valueFrom:
+  #   #      secretKeyRef:
+  #   #        name: secret
+  #   #        key: key
+  #   #      configmapKeyRef:
+  #   #        name: configmap
+  #   #        key: key
+  #   envFrom: []
+  #   #  - configmapRef:
+  #   #      name: configmap
+  #   #  - secretRef:
+  #   #      name: secret
+  #   --- Resources to assign to the container
+  #   resources:
+  #     requests:
+  #       cpu: 50m
+  #       memory: 64Mi
+  #     limits:
+  #       cpu: 200m
+  #       memory: 256Mi
+  #   --- Volume mounts
+  #   volumeMounts: []
+  #   #  - name: volume
+  #   #    mountPath: /path
+  #   #    subPath: ""
+  #   #    readOnly: false
+  # --- Volumes to claim
+  volumes: []
+  # - name: volume
+  #   configmap:
+  #     name: configmap
+  #   secret:
+  #     secretName: secret
+  #   persistentVolumeClaim:
+  #     claimName: claim
+  # --- Additional labels to apply to the ConfigMap
+  labels: {}
+  #  labelKey: "labelValue"
+  # --- Amount of replicas
+  replicas: 1
+
+# ---- | Common metadata
+metadata:
+  # --- Additional annotations to apply to all resources
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Additional labels to apply to all resources
+  labels: {}
+  #  app.kubernetes.io/component: ""
+  # --- Component name override
+  name: ""
+
+# ---- | IngressRoute component
+ingressroute:
+  # --- Additional annotations to apply to the IngressRoute
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Entry points to expose
+  entrypoints: []
+  # - web
+  # --- Routes to match
+  routes: []
+  # - match: Host(`example.com`)
+  #   services:
+  #   - name: service
+  #     port: 80
+  # --- Additional labels to apply to the IngressRoute
+  labels: {}
+  #  labelKey: "labelValue"
+
+# ---- | IngressRouteTCP component
+ingressroutetcp:
+  # --- Additional annotations to apply to the IngressRouteTCP
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Entry points to expose
+  entrypoints: []
+  # - tcp
+  # --- Routes to match
+  routes: []
+  # - match: HostSNI(`*`)
+  #   services:
+  #   - name: service
+  #     port: 80
+  # --- Additional labels to apply to the IngressRouteTCP
+  labels: {}
+  #  labelKey: "labelValue"
+
+# ---- | IngressRouteUDP component
+ingressrouteudp:
+  # --- Additional annotations to apply to the IngressRouteUDP
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Entry points to expose
+  entrypoints: []
+  # - udp
+  # --- Additional labels to apply to the IngressRouteUDP
+  labels: {}
+  #  labelKey: "labelValue"
+
+# ---- | Secret component
+secret:
+  # --- Additional annotations to apply to the Secret
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Data to be added inside the Secret
+  data: {}
+  #  PASSWORD: "password"
+  # --- Type of Secret
+  type: Opaque
+  # --- Additional labels to apply to the Secret
+  labels: {}
+  #  labelKey: "labelValue"
+
+# ---- | Service component
+service:
+  # --- Additional annotations to apply to the Service
+  annotations: {}
+  #  annotationKey: "annotationValue"
+  # --- Additional labels to apply to the Service
+  labels: {}
+  #  labelKey: "labelValue"
+  # --- Ports to expose
+  ports: []
+  # - name: ""
+  #   port: 80
+  #   protocol: TCP
+  #   targetPort: 80
+  # --- Label selector to match
+  selector: {}
+  #  app.kubernetes.io/name: "app"
+  # --- Service type
+  type: ClusterIP

@@ -1,0 +1,15 @@
+apiVersion: v2
+name: template
+description: A Helm agnostic-application template chart.
+type: library
+version: 1.0.0
+maintainers:
+  - name: Kike Fontan
+    email: helm@kike.wtf
+    url: https://github.com/cosasdepuma/
+keywords:
+  - cosasdepuma
+  - homelab
+  - base
+  - core
+  - template
