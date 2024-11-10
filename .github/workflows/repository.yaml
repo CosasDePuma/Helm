@@ -26,15 +26,15 @@ jobs:
 
       - name: Set up gh-pages branch
         run: |
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-          git reset --hard origin/gh-pages
+          git fetch origin
+          git checkout --orphan gh-pages || git checkout gh-pages
           mkdir -p gh-pages
 
       - name: Move Helm chart packages to gh-pages
         run: |
           for chart in ./charts-packages/*.tgz; do
             chart_name=$(basename $chart)
-            chart_folder="gh-pages/$(basename $chart .tgz | cut -d'-' -f1)"
+            chart_folder="gh-pages/$(basename $chart .tgz)"
             mkdir -p $chart_folder
             mv $chart $chart_folder/
           done
@@ -42,14 +42,14 @@ jobs:
       - name: Generate Helm repository index
         run: |
           cd gh-pages
-          helm repo index .
+          helm repo index . --url https://<your-username>.github.io/<your-repo>
 
       - name: Commit and push to gh-pages
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "New release: $(date)"
+          git commit -m "Deploy new Helm charts"
           git push origin gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
